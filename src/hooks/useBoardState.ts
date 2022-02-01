@@ -129,7 +129,6 @@ export const useBoardState = (currentPlayer: Player) => {
         break;
       }
     }
-    console.log(nextBoard, '1');
 
     return nextBoard;
   };

@@ -25,7 +25,14 @@ import { useGameResult } from '../hooks/useGameResult';
 export const Othello: VFC = () => {
   const { selectedTheme, updateSessionTheme, updateTheme } = useThemes();
 
-  const { playerFirst, setPlayerFirst, playerSecond, setPlayerSecond, updateSessionPlayerSetting, updatePlayerSetting } = usePlayers(selectedTheme);
+  const {
+    playerFirst,
+    setPlayerFirst,
+    playerSecond,
+    setPlayerSecond,
+    updateSessionPlayerSetting,
+    updatePlayerSetting,
+  } = usePlayers(selectedTheme);
 
   useEffect(() => {
     const sessionPlayerFirstName = sessionStorage.getItem('playerFirstName');
@@ -52,9 +59,13 @@ export const Othello: VFC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerFirst, playerSecond]);
 
-  const { currentPlayer, updateCurrentPlayer, changePlayerTurn, resetPlayerTurn } = useCurrentPlayer(playerFirst, playerSecond);
+  const { currentPlayer, updateCurrentPlayer, changePlayerTurn, resetPlayerTurn } = useCurrentPlayer(
+    playerFirst,
+    playerSecond
+  );
 
-  const { boardState, updateBoardState, currentPosition, updateCurrentPosition, nextBoardState } = useBoardState(currentPlayer);
+  const { boardState, updateBoardState, currentPosition, updateCurrentPosition, nextBoardState } =
+    useBoardState(currentPlayer);
 
   const onClickSquare = (x: number, y: number) => {
     updateCurrentPosition({ x, y });
@@ -72,7 +83,12 @@ export const Othello: VFC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPosition]);
 
-  const { isBoardFull, hasBoardOnlyOneColor, canPlaceStone } = useBoardChecker(boardState, playerFirst, playerSecond, currentPlayer);
+  const { isBoardFull, hasBoardOnlyOneColor, canPlaceStone } = useBoardChecker(
+    boardState,
+    playerFirst,
+    playerSecond,
+    currentPlayer
+  );
 
   const [passedFlag, setPassedFlag] = useState(false);
 
@@ -164,7 +180,13 @@ export const Othello: VFC = () => {
         updatePlayerSetting={updatePlayerSetting}
       />
 
-      <ThemeModal isThemeModalOpen={isThemeModalOpen} closeThemeModal={closeThemeModal} selectedTheme={selectedTheme} updateSessionTheme={updateSessionTheme} updateTheme={updateTheme} />
+      <ThemeModal
+        isThemeModalOpen={isThemeModalOpen}
+        closeThemeModal={closeThemeModal}
+        selectedTheme={selectedTheme}
+        updateSessionTheme={updateSessionTheme}
+        updateTheme={updateTheme}
+      />
     </>
   );
 };

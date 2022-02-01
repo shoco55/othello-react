@@ -25,7 +25,19 @@ interface Props {
 }
 
 export const Board: VFC<Props> = (props) => {
-  const { selectedTheme, playerFirst, playerSecond, currentPlayer, boardState, onClickSquare, isBoardMessageShow, boardMessageType, gameResult, isResultMessageShow, hideResultMessage } = props;
+  const {
+    selectedTheme,
+    playerFirst,
+    playerSecond,
+    currentPlayer,
+    boardState,
+    onClickSquare,
+    isBoardMessageShow,
+    boardMessageType,
+    gameResult,
+    isResultMessageShow,
+    hideResultMessage,
+  } = props;
 
   return (
     <div css={boardContainer}>
@@ -50,8 +62,18 @@ export const Board: VFC<Props> = (props) => {
           })}
         </div>
       </div>
-      <BoardMessage currentPlayer={currentPlayer} isBoardMessageShow={isBoardMessageShow} boardMessageType={boardMessageType} />
-      <ResultMessage playerFirst={playerFirst} playerSecond={playerSecond} gameResult={gameResult} isResultMessageShow={isResultMessageShow} hideResultMessage={hideResultMessage} />
+      <BoardMessage
+        currentPlayer={currentPlayer}
+        isBoardMessageShow={isBoardMessageShow}
+        boardMessageType={boardMessageType}
+      />
+      <ResultMessage
+        playerFirst={playerFirst}
+        playerSecond={playerSecond}
+        gameResult={gameResult}
+        isResultMessageShow={isResultMessageShow}
+        hideResultMessage={hideResultMessage}
+      />
     </div>
   );
 };
