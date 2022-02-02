@@ -3,7 +3,7 @@ import { Theme } from './types/theme';
 export const BOARD_SIZE = 8;
 
 export const STONE_FIRST = 1;
-export const STONE_SECOND = -1;
+export const STONE_SECOND = 2;
 export const STONE_EMPTY = 0;
 
 const F = STONE_FIRST;

@@ -4,7 +4,12 @@ import { BoardState } from '../types/board';
 
 import { BOARD_SIZE, STONE_EMPTY } from '../constants';
 
-export const useBoardChecker = (boardState: BoardState, playerFirst: Player, playerSecond: Player, currentPlayer: Player) => {
+export const useBoardChecker = (
+  boardState: BoardState,
+  playerFirst: Player,
+  playerSecond: Player,
+  currentPlayer: Player
+) => {
   const isBoardFull = () => {
     const hasNoEmpty = boardState.every((row) => row.every((state) => state !== STONE_EMPTY));
     return hasNoEmpty;
@@ -18,13 +23,19 @@ export const useBoardChecker = (boardState: BoardState, playerFirst: Player, pla
 
   const canPlaceStone = () => {
     const STONE_CURRENT_PLAYER = currentPlayer.stone;
+    const STONE_OPPONENT_PLAYER = STONE_CURRENT_PLAYER === playerFirst.stone ? playerSecond.stone : playerFirst.stone;
 
-    // playerFirstのターン: 0(-1 が1回以上)1 or (直前の文字に-がついていない 1）(-1 が1回以上)0
-    // playerSecondのターン: 0(1 が1回以上) - 1 or - 1(1 が1回以上)0
-    const reverseCheckRegExp = new RegExp(`(${STONE_EMPTY}(${STONE_CURRENT_PLAYER * -1})+(${STONE_CURRENT_PLAYER})|(?<!-)(${STONE_CURRENT_PLAYER})(${STONE_CURRENT_PLAYER * -1})+${STONE_EMPTY})`);
+    // playerFirstのターン: (0)(2 が1回以上)(1) or (1)(2 が1回以上)(0)
+    // playerSecondのターン: (0)(1 が1回以上)(2) or (2)(1 が1回以上)(0)
+    const reverseCheckRegExp = new RegExp(
+      `(${STONE_EMPTY}(${STONE_OPPONENT_PLAYER})+(${STONE_CURRENT_PLAYER})|(${STONE_CURRENT_PLAYER})(${STONE_OPPONENT_PLAYER})+${STONE_EMPTY})`
+    );
+    console.log(reverseCheckRegExp);
 
-    const canReverseStones = (squareArray: BoardState) => {
-      return squareArray.some((array) => {
+    const canReverseStones = (board: BoardState) => {
+      return board.some((array) => {
+        console.log(reverseCheckRegExp.test(array.join('')), array.join(''));
+
         return reverseCheckRegExp.test(array.join(''));
       });
     };
