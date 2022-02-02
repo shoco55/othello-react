@@ -103,8 +103,13 @@ export const Othello: VFC = () => {
         endGame();
       } else {
         setPassedFlag(true);
-        showBoardMessage('pass', 2000);
-        changePlayerTurn();
+
+        const duration = 2000;
+        showBoardMessage('pass', duration);
+        setTimeout(() => {
+          changePlayerTurn();
+        }, duration);
+
         return;
       }
     }
