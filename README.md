@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# カラフルオセロゲーム
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 目次
 
-## Available Scripts
+- アプリケーションの概要
+- URL
+- 機能一覧
+- 利用技術一覧
+- ローカル動作環境・動作方法
 
-In the project directory, you can run:
+## アプリケーションの概要
 
-### `npm start`
+2人対戦用のオセロアプリです。  
+プレイヤー名、テーマカラーを設定してゲームを楽しめます。  
+＊オンライン対戦、CPU対戦には対応していません。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## URL
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+https://shoco55.github.io/react-othello/
 
-### `npm test`
+## 仕様
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- オセロゲームのルール
+  - スタート時、盤の中心に石が4つ交互においてある。
+  - 自分のターンで打てる箇所がある場合は、必ず打つ。
+  - 自分のターンで打てる箇所がない場合は、パスして相手のターンとなる。
+  - パスは何回でも可能で、ペナルティはなし。
+  - 双方が打てなくなったら、ゲーム終了。
+  - 打てる場所や、双方の石数は表示しない。（オフラインのオセロと同じ感覚で楽しんでほしいため）
 
-### `npm run build`
+- 表示設定
+  - プレイヤー名が変更できる。
+  - テーマカラーを数種類の中から選択して、変更できる。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 機能一覧
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- オセロゲーム機能
+- プレイヤー名変更機能
+- テーマカラー変更機能
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 利用技術一覧
 
-### `npm run eject`
+- React
+- TypeScript
+- Emotion
+- GitHub Pages
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## ローカル動作環境・動作方法
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- node 16.13.1
+- yarn 1.22.10
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. yarn install
+2. yarn start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 今後実装したい機能
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 先攻、後攻をどちらのプレイヤーにするか選べるようにする。
