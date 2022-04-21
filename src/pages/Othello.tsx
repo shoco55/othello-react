@@ -1,7 +1,7 @@
 import { VFC, useState, useEffect } from 'react';
-import { css } from '@emotion/react';
 
-import { Header } from '../components/Header';
+import { MainLayout } from '../layouts/MainLayout';
+
 import { Menu } from '../components/Menu';
 import { Guide } from '../components/Guide';
 import { Board } from '../components/Board';
@@ -152,29 +152,26 @@ export const Othello: VFC = () => {
   };
 
   return (
-    <>
-      <Header />
-      <main css={main}>
-        <Menu resetGame={resetGame} openPlayerModal={openPlayerModal} openThemeModal={openThemeModal} />
+    <MainLayout>
+      <Menu resetGame={resetGame} openPlayerModal={openPlayerModal} openThemeModal={openThemeModal} />
 
-        <Guide currentPlayer={currentPlayer} isGameOver={isGameOver} />
+      <Guide currentPlayer={currentPlayer} isGameOver={isGameOver} />
 
-        <Board
-          selectedTheme={selectedTheme}
-          playerFirst={playerFirst}
-          playerSecond={playerSecond}
-          currentPlayer={currentPlayer}
-          boardState={boardState}
-          onClickSquare={onClickSquare}
-          isBoardMessageShow={isBoardMessageShow}
-          boardMessageType={boardMessageType}
-          gameResult={gameResult}
-          isResultMessageShow={isResultMessageShow}
-          hideResultMessage={hideResultMessage}
-        />
+      <Board
+        selectedTheme={selectedTheme}
+        playerFirst={playerFirst}
+        playerSecond={playerSecond}
+        currentPlayer={currentPlayer}
+        boardState={boardState}
+        onClickSquare={onClickSquare}
+        isBoardMessageShow={isBoardMessageShow}
+        boardMessageType={boardMessageType}
+        gameResult={gameResult}
+        isResultMessageShow={isResultMessageShow}
+        hideResultMessage={hideResultMessage}
+      />
 
-        <PlayerProfile playerFirst={playerFirst} playerSecond={playerSecond} />
-      </main>
+      <PlayerProfile playerFirst={playerFirst} playerSecond={playerSecond} />
 
       <PlayerModal
         isPlayerModalOpen={isPlayerModalOpen}
@@ -192,10 +189,6 @@ export const Othello: VFC = () => {
         updateSessionTheme={updateSessionTheme}
         updateTheme={updateTheme}
       />
-    </>
+    </MainLayout>
   );
 };
-
-const main = css`
-  padding: 20px 16px;
-`;
