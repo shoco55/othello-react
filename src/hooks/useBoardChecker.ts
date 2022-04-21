@@ -30,12 +30,9 @@ export const useBoardChecker = (
     const reverseCheckRegExp = new RegExp(
       `(${STONE_EMPTY}(${STONE_OPPONENT_PLAYER})+(${STONE_CURRENT_PLAYER})|(${STONE_CURRENT_PLAYER})(${STONE_OPPONENT_PLAYER})+${STONE_EMPTY})`
     );
-    console.log(reverseCheckRegExp);
 
     const canReverseStones = (board: BoardState) => {
       return board.some((array) => {
-        console.log(reverseCheckRegExp.test(array.join('')), array.join(''));
-
         return reverseCheckRegExp.test(array.join(''));
       });
     };

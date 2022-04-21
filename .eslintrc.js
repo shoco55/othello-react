@@ -55,7 +55,7 @@ module.exports = {
         namedComponents: 'arrow-function',
       },
     ],
-    'no-console': 'off', // only development
+    'no-console': 'error',
     'react/self-closing-comp': [
       'error',
       {
