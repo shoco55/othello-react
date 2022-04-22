@@ -3,6 +3,8 @@
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
+import { Button } from './Button';
+
 import { Player } from '../types/player';
 
 interface Props {
@@ -15,7 +17,14 @@ interface Props {
 }
 
 export const PlayerModal: VFC<Props> = (props) => {
-  const { isPlayerModalOpen, closePlayerModal, playerFirst, playerSecond, updateSessionPlayerSetting, updatePlayerSetting } = props;
+  const {
+    isPlayerModalOpen,
+    closePlayerModal,
+    playerFirst,
+    playerSecond,
+    updateSessionPlayerSetting,
+    updatePlayerSetting,
+  } = props;
 
   const [playerFirstName, setPlayerFirstName] = useState('');
   const [playerSecondName, setPlayerSecondName] = useState('');
@@ -53,25 +62,41 @@ export const PlayerModal: VFC<Props> = (props) => {
                 <label htmlFor="playerFirst" css={label}>
                   先手プレイヤー
                 </label>
-                <input id="playerFirst" type="text" css={input} maxLength={10} autoComplete="off" value={playerFirstName} onChange={onChangePlayerFirstName} />
+                <input
+                  id="playerFirst"
+                  type="text"
+                  css={input}
+                  maxLength={10}
+                  autoComplete="off"
+                  value={playerFirstName}
+                  onChange={onChangePlayerFirstName}
+                />
                 <p css={counter}>{playerFirstName.length}/10</p>
               </div>
               <div css={formParts}>
                 <label htmlFor="playerSecond" css={label}>
                   後手プレイヤー
                 </label>
-                <input id="playerSecond" type="text" css={input} maxLength={10} autoComplete="off" value={playerSecondName} onChange={onChangePlayerSecondName} />
+                <input
+                  id="playerSecond"
+                  type="text"
+                  css={input}
+                  maxLength={10}
+                  autoComplete="off"
+                  value={playerSecondName}
+                  onChange={onChangePlayerSecondName}
+                />
                 <p css={counter}>{playerSecondName.length}/10</p>
               </div>
               <p css={note}>※プレイヤー名は、ブラウザに一時的に保存します。ブラウザを閉じるとリセットされます。</p>
             </div>
             <div css={footer}>
-              <button type="button" css={cancelButton} onClick={closePlayerModal}>
+              <Button type="normal" onClick={closePlayerModal}>
                 キャンセル
-              </button>
-              <button type="button" css={updateButton} onClick={onClickUpdate}>
+              </Button>
+              <Button type="primary" onClick={onClickUpdate}>
                 変更する
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -165,40 +190,8 @@ const footer = css`
   padding: 16px 20px;
   background-color: #f5f5f5;
   border-top: 1px solid #dbdbdb;
-`;
 
-const button = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  padding: 4px 10px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  background-color: #fff;
-  border: 1px solid #ececec;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 200ms;
-`;
-
-const cancelButton = css`
-  ${button}
-  margin-right: 8px;
-  background-color: #fff;
-  border: 1px solid #ececec;
-  &:hover {
-    background-color: #fafafa;
-  }
-`;
-
-const updateButton = css`
-  ${button}
-  background-color: #333;
-  border-color: transparent;
-  color: #fff;
-  &:hover {
-    background-color: #222;
+  button + button {
+    margin-left: 8px;
   }
 `;

@@ -3,6 +3,8 @@
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
+import { Button } from './Button';
+
 import { Theme } from '../types/theme';
 
 import { THEME_COLORS } from '../constants';
@@ -72,7 +74,14 @@ export const ThemeModal: VFC<Props> = (props) => {
                     </div>
                     <div css={theme.id === selectedThemeRadio?.id ? checkedThemeName : themeName}>
                       <div css={themeNameInner}>
-                        <input type="radio" name="theme" css={radioSubstance} value={theme.id} checked={theme.id === selectedThemeRadio?.id} onChange={onChangeTheme} />
+                        <input
+                          type="radio"
+                          name="theme"
+                          css={radioSubstance}
+                          value={theme.id}
+                          checked={theme.id === selectedThemeRadio?.id}
+                          onChange={onChangeTheme}
+                        />
                         <span css={radioImitation} />
                         <p css={themeNameTitle}>{theme.name}</p>
                       </div>
@@ -83,12 +92,12 @@ export const ThemeModal: VFC<Props> = (props) => {
             </section>
 
             <div css={footer}>
-              <button type="button" css={cancelButton} onClick={closeThemeModal}>
+              <Button type="normal" onClick={closeThemeModal}>
                 キャンセル
-              </button>
-              <button type="button" css={updateButton} onClick={onClickUpdate}>
+              </Button>
+              <Button type="primary" onClick={onClickUpdate}>
                 変更する
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -280,40 +289,8 @@ const footer = css`
   padding: 16px 20px;
   background-color: #f5f5f5;
   border-top: 1px solid #dbdbdb;
-`;
 
-const button = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  padding: 4px 10px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  background-color: #fff;
-  border: 1px solid #ececec;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 200ms;
-`;
-
-const cancelButton = css`
-  ${button}
-  margin-right: 8px;
-  background-color: #fff;
-  border: 1px solid #ececec;
-  &:hover {
-    background-color: #fafafa;
-  }
-`;
-
-const updateButton = css`
-  ${button}
-  background-color: #333;
-  border-color: transparent;
-  color: #fff;
-  &:hover {
-    background-color: #222;
+  button + button {
+    margin-left: 8px;
   }
 `;
