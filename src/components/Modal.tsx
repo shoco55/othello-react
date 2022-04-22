@@ -1,11 +1,11 @@
-import { VFC, useRef } from 'react';
+import { ReactNode, VFC, useRef } from 'react';
 import { css } from '@emotion/react';
 
 import { useAriaHidden } from 'hooks/useAriaHidden';
 import { useFocusTrap } from 'hooks/useFocusTrap';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   isOpen: boolean;
   'aria-labelledby': string;
   'aria-describedby': string;
