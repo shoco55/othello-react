@@ -1,7 +1,7 @@
 import { ReactNode, VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { Header } from '../components/Header';
+import { Header } from 'components/Header';
 
 const main = css`
   padding: 20px 16px;

@@ -1,14 +1,14 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { BoardSquare } from './BoardSquare';
-import { BoardMessage } from './BoardMessage';
-import { ResultMessage } from './ResultMessage';
+import { BoardSquare } from 'components/BoardSquare';
+import { BoardMessage } from 'components/BoardMessage';
+import { ResultMessage } from 'components/ResultMessage';
 
-import { Theme } from '../types/theme';
-import { Player } from '../types/player';
-import { Result } from '../types/result';
-import { BoardState, BoardMessageTypeList } from '../types/board';
+import { Theme } from 'types/theme';
+import { Player } from 'types/player';
+import { Result } from 'types/result';
+import { BoardState, BoardMessageTypeList } from 'types/board';
 
 interface Props {
   selectedTheme: Theme;

@@ -1,13 +1,13 @@
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
-import { Modal } from './Modal';
-import { ModalHeader } from './ModalHeader';
-import { ModalContent } from './ModalContent';
-import { ModalFooter } from './ModalFooter';
-import { Button } from './Button';
+import { Modal } from 'components/Modal';
+import { ModalHeader } from 'components/ModalHeader';
+import { ModalContent } from 'components/ModalContent';
+import { ModalFooter } from 'components/ModalFooter';
+import { Button } from 'components/Button';
 
-import { Player } from '../types/player';
+import { Player } from 'types/player';
 
 interface Props {
   isPlayerModalOpen: boolean;

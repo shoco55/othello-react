@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Player } from '../types/player';
+import { Player } from 'types/player';
 
 export const useCurrentPlayer = (playerFirst: Player, playerSecond: Player) => {
   const [currentPlayer, setCurrentPlayer] = useState(playerFirst);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { ResultStatus, Result } from '../types/result';
-import { BoardState } from '../types/board';
+import { ResultStatus, Result } from 'types/result';
+import { BoardState } from 'types/board';
 
 import { RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW, STONE_FIRST, STONE_SECOND } from '../constants';
 

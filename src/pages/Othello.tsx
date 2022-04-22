@@ -1,26 +1,26 @@
 import { VFC, useState, useEffect } from 'react';
 
-import { MainLayout } from '../layouts/MainLayout';
+import { MainLayout } from 'layouts/MainLayout';
 
-import { Menu } from '../components/Menu';
-import { Guide } from '../components/Guide';
-import { Board } from '../components/Board';
-import { PlayerProfile } from '../components/PlayerProfile';
-import { PlayerModal } from '../components/PlayerModal';
-import { ThemeModal } from '../components/ThemeModal';
+import { Menu } from 'components/Menu';
+import { Guide } from 'components/Guide';
+import { Board } from 'components/Board';
+import { PlayerProfile } from 'components/PlayerProfile';
+import { PlayerModal } from 'components/PlayerModal';
+import { ThemeModal } from 'components/ThemeModal';
 
-import { INITIAL_BOARD_STATE, THEME_COLORS, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from '../constants';
+import { INITIAL_BOARD_STATE, THEME_COLORS, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from 'constants';
 
-import { useIsThemeModalOpen } from '../hooks/useIsThemeModalOpen';
-import { useIsPlayerModalOpen } from '../hooks/useIsPlayerModalOpen';
-import { useIsBoardMessageShow } from '../hooks/useIsBoardMessageShow';
-import { useIsResultMessageShow } from '../hooks/useIsResultMessageShow';
-import { useBoardState } from '../hooks/useBoardState';
-import { usePlayers } from '../hooks/usePlayers';
-import { useThemes } from '../hooks/useThemes';
-import { useBoardChecker } from '../hooks/useBoardChecker';
-import { useCurrentPlayer } from '../hooks/useCurrentPlayer';
-import { useGameResult } from '../hooks/useGameResult';
+import { useIsThemeModalOpen } from 'hooks/useIsThemeModalOpen';
+import { useIsPlayerModalOpen } from 'hooks/useIsPlayerModalOpen';
+import { useIsBoardMessageShow } from 'hooks/useIsBoardMessageShow';
+import { useIsResultMessageShow } from 'hooks/useIsResultMessageShow';
+import { useBoardState } from 'hooks/useBoardState';
+import { usePlayers } from 'hooks/usePlayers';
+import { useThemes } from 'hooks/useThemes';
+import { useBoardChecker } from 'hooks/useBoardChecker';
+import { useCurrentPlayer } from 'hooks/useCurrentPlayer';
+import { useGameResult } from 'hooks/useGameResult';
 
 export const Othello: VFC = () => {
   const { selectedTheme, updateSessionTheme, updateTheme } = useThemes();

@@ -1,8 +1,8 @@
-import { Player } from '../types/player';
+import { Player } from 'types/player';
 
-import { BoardState } from '../types/board';
+import { BoardState } from 'types/board';
 
-import { BOARD_SIZE, STONE_EMPTY } from '../constants';
+import { BOARD_SIZE, STONE_EMPTY } from 'constants';
 
 export const useBoardChecker = (
   boardState: BoardState,

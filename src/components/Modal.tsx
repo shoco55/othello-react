@@ -1,8 +1,8 @@
 import { VFC, useRef } from 'react';
 import { css } from '@emotion/react';
 
-import { useAriaHidden } from '../hooks/useAriaHidden';
-import { useFocusTrap } from '../hooks/useFocusTrap';
+import { useAriaHidden } from 'hooks/useAriaHidden';
+import { useFocusTrap } from 'hooks/useFocusTrap';
 
 type Props = {
   children: React.ReactNode;

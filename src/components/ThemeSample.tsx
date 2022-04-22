@@ -1,7 +1,7 @@
 import { VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
-import { Theme } from '../types/theme';
+import { Theme } from 'types/theme';
 
 interface Props {
   theme: Theme;

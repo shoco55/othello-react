@@ -2,8 +2,8 @@ import { VFC, useState, useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
 import { CSSTransition } from 'react-transition-group';
 
-import { Player } from '../types/player';
-import { Result } from '../types/result';
+import { Player } from 'types/player';
+import { Result } from 'types/result';
 
 import { RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW } from '../constants';
 

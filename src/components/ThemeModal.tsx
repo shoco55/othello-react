@@ -1,16 +1,16 @@
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
-import { Modal } from './Modal';
-import { ModalHeader } from './ModalHeader';
-import { ModalContent } from './ModalContent';
-import { ModalFooter } from './ModalFooter';
-import { Button } from './Button';
-import { ThemeSample } from './ThemeSample';
+import { Modal } from 'components/Modal';
+import { ModalHeader } from 'components/ModalHeader';
+import { ModalContent } from 'components/ModalContent';
+import { ModalFooter } from 'components/ModalFooter';
+import { Button } from 'components/Button';
+import { ThemeSample } from 'components/ThemeSample';
 
-import { Theme } from '../types/theme';
+import { Theme } from 'types/theme';
 
-import { THEME_COLORS } from '../constants';
+import { THEME_COLORS } from 'constants';
 
 interface Props {
   isThemeModalOpen: boolean;

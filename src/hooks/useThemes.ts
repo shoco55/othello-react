@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Theme } from '../types/theme';
+import { Theme } from 'types/theme';
 
-import { THEME_COLORS } from '../constants';
+import { THEME_COLORS } from 'constants';
 
 export const useThemes = () => {
   const [selectedTheme, setSelectedTheme] = useState(THEME_COLORS[0]);
