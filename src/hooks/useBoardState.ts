@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { BOARD_SIZE, STONE_EMPTY, INITIAL_BOARD_STATE } from '../constants';
+import { BOARD_SIZE, STONE_EMPTY, INITIAL_BOARD_STATE } from 'constants';
 
-import { Player } from '../types/player';
-import { BoardState } from '../types/board';
+import { Player } from 'types/player';
+import { BoardState } from 'types/board';
 
 export const useBoardState = (currentPlayer: Player) => {
   const [boardState, setBoardState] = useState<BoardState>(INITIAL_BOARD_STATE);

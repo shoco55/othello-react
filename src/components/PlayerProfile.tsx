@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { Player } from '../types/player';
+import { Player } from 'types/player';
 
 interface Props {
   playerFirst: Player;

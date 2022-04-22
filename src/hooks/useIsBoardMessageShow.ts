@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { BoardMessageTypeList } from '../types/board';
+import { BoardMessageTypeList } from 'types/board';
 
 export const useIsBoardMessageShow = () => {
   const [isBoardMessageShow, setIsShowBoardMessage] = useState(false);

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Theme } from '../types/theme';
+import { Theme } from 'types/theme';
 
-import { STONE_FIRST, STONE_SECOND, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from '../constants';
+import { STONE_FIRST, STONE_SECOND, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from 'constants';
 
 export const usePlayers = (selectedTheme: Theme) => {
   const [playerFirst, setPlayerFirst] = useState({
@@ -29,5 +29,12 @@ export const usePlayers = (selectedTheme: Theme) => {
     setPlayerSecond((state) => ({ ...state, [key]: second }));
   };
 
-  return { playerFirst, setPlayerFirst, playerSecond, setPlayerSecond, updateSessionPlayerSetting, updatePlayerSetting };
+  return {
+    playerFirst,
+    setPlayerFirst,
+    playerSecond,
+    setPlayerSecond,
+    updateSessionPlayerSetting,
+    updatePlayerSetting,
+  };
 };

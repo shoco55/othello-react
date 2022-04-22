@@ -1,9 +1,9 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { Player } from '../types/player';
+import { Player } from 'types/player';
 
-import { STONE_FIRST } from '../constants';
+import { STONE_FIRST } from 'constants';
 
 interface Props {
   squareState: number;

@@ -2,8 +2,8 @@ import { VFC, useRef } from 'react';
 import { css } from '@emotion/react';
 import { CSSTransition } from 'react-transition-group';
 
-import { Player } from '../types/player';
-import { BoardMessageTypeList } from '../types/board';
+import { Player } from 'types/player';
+import { BoardMessageTypeList } from 'types/board';
 
 interface Props {
   currentPlayer: Player;

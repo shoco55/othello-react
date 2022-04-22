@@ -1,26 +1,26 @@
 import { VFC, useState, useEffect } from 'react';
-import { css } from '@emotion/react';
 
-import { Header } from '../components/Header';
-import { Menu } from '../components/Menu';
-import { Guide } from '../components/Guide';
-import { Board } from '../components/Board';
-import { PlayerProfile } from '../components/PlayerProfile';
-import { PlayerModal } from '../components/PlayerModal';
-import { ThemeModal } from '../components/ThemeModal';
+import { MainLayout } from 'layouts/MainLayout';
 
-import { INITIAL_BOARD_STATE, THEME_COLORS, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from '../constants';
+import { Menu } from 'components/Menu';
+import { Guide } from 'components/Guide';
+import { Board } from 'components/Board';
+import { PlayerProfile } from 'components/PlayerProfile';
+import { PlayerModal } from 'components/PlayerModal';
+import { ThemeModal } from 'components/ThemeModal';
 
-import { useIsThemeModalOpen } from '../hooks/useIsThemeModalOpen';
-import { useIsPlayerModalOpen } from '../hooks/useIsPlayerModalOpen';
-import { useIsBoardMessageShow } from '../hooks/useIsBoardMessageShow';
-import { useIsResultMessageShow } from '../hooks/useIsResultMessageShow';
-import { useBoardState } from '../hooks/useBoardState';
-import { usePlayers } from '../hooks/usePlayers';
-import { useThemes } from '../hooks/useThemes';
-import { useBoardChecker } from '../hooks/useBoardChecker';
-import { useCurrentPlayer } from '../hooks/useCurrentPlayer';
-import { useGameResult } from '../hooks/useGameResult';
+import { INITIAL_BOARD_STATE, THEME_COLORS, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from 'constants';
+
+import { useIsThemeModalOpen } from 'hooks/useIsThemeModalOpen';
+import { useIsPlayerModalOpen } from 'hooks/useIsPlayerModalOpen';
+import { useIsBoardMessageShow } from 'hooks/useIsBoardMessageShow';
+import { useIsResultMessageShow } from 'hooks/useIsResultMessageShow';
+import { useBoardState } from 'hooks/useBoardState';
+import { usePlayers } from 'hooks/usePlayers';
+import { useThemes } from 'hooks/useThemes';
+import { useBoardChecker } from 'hooks/useBoardChecker';
+import { useCurrentPlayer } from 'hooks/useCurrentPlayer';
+import { useGameResult } from 'hooks/useGameResult';
 
 export const Othello: VFC = () => {
   const { selectedTheme, updateSessionTheme, updateTheme } = useThemes();
@@ -152,29 +152,26 @@ export const Othello: VFC = () => {
   };
 
   return (
-    <>
-      <Header />
-      <main css={main}>
-        <Menu resetGame={resetGame} openPlayerModal={openPlayerModal} openThemeModal={openThemeModal} />
+    <MainLayout>
+      <Menu resetGame={resetGame} openPlayerModal={openPlayerModal} openThemeModal={openThemeModal} />
 
-        <Guide currentPlayer={currentPlayer} isGameOver={isGameOver} />
+      <Guide currentPlayer={currentPlayer} isGameOver={isGameOver} />
 
-        <Board
-          selectedTheme={selectedTheme}
-          playerFirst={playerFirst}
-          playerSecond={playerSecond}
-          currentPlayer={currentPlayer}
-          boardState={boardState}
-          onClickSquare={onClickSquare}
-          isBoardMessageShow={isBoardMessageShow}
-          boardMessageType={boardMessageType}
-          gameResult={gameResult}
-          isResultMessageShow={isResultMessageShow}
-          hideResultMessage={hideResultMessage}
-        />
+      <Board
+        selectedTheme={selectedTheme}
+        playerFirst={playerFirst}
+        playerSecond={playerSecond}
+        currentPlayer={currentPlayer}
+        boardState={boardState}
+        onClickSquare={onClickSquare}
+        isBoardMessageShow={isBoardMessageShow}
+        boardMessageType={boardMessageType}
+        gameResult={gameResult}
+        isResultMessageShow={isResultMessageShow}
+        hideResultMessage={hideResultMessage}
+      />
 
-        <PlayerProfile playerFirst={playerFirst} playerSecond={playerSecond} />
-      </main>
+      <PlayerProfile playerFirst={playerFirst} playerSecond={playerSecond} />
 
       <PlayerModal
         isPlayerModalOpen={isPlayerModalOpen}
@@ -192,10 +189,6 @@ export const Othello: VFC = () => {
         updateSessionTheme={updateSessionTheme}
         updateTheme={updateTheme}
       />
-    </>
+    </MainLayout>
   );
 };
-
-const main = css`
-  padding: 20px 16px;
-`;
