@@ -1,11 +1,11 @@
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
-import { Modal } from 'components/Modal';
-import { ModalHeader } from 'components/ModalHeader';
-import { ModalContent } from 'components/ModalContent';
-import { ModalFooter } from 'components/ModalFooter';
-import { Button } from 'components/Button';
+import { Modal } from 'components/cummon/Modal/Modal';
+import { ModalHeader } from 'components/cummon/Modal/ModalHeader';
+import { ModalContent } from 'components/cummon/Modal/ModalContent';
+import { ModalFooter } from 'components/cummon/Modal/ModalFooter';
+import { Button } from 'components/cummon/Button/Button';
 
 import { Player } from 'types/player';
 

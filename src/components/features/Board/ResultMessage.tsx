@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import { Player } from 'types/player';
 import { Result } from 'types/result';
 
-import { RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW } from '../constants';
+import { RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW } from '../../../constants';
 
 interface Props {
   playerFirst: Player;

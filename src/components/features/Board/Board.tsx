@@ -1,9 +1,9 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { BoardSquare } from 'components/BoardSquare';
-import { BoardMessage } from 'components/BoardMessage';
-import { ResultMessage } from 'components/ResultMessage';
+import { BoardSquare } from 'components/features/Board/BoardSquare';
+import { BoardMessage } from 'components/features/Board/BoardMessage';
+import { ResultMessage } from 'components/features/Board/ResultMessage';
 
 import { Theme } from 'types/theme';
 import { Player } from 'types/player';

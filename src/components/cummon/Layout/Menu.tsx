@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { Button } from 'components/Button';
+import { Button } from 'components/cummon/Button/Button';
 
 interface Props {
   resetGame: () => void;

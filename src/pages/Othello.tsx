@@ -2,12 +2,12 @@ import { VFC, useState, useEffect } from 'react';
 
 import { MainLayout } from 'layouts/MainLayout';
 
-import { Menu } from 'components/Menu';
-import { Guide } from 'components/Guide';
-import { Board } from 'components/Board';
-import { PlayerProfile } from 'components/PlayerProfile';
-import { PlayerModal } from 'components/PlayerModal';
-import { ThemeModal } from 'components/ThemeModal';
+import { Menu } from 'components/cummon/Layout/Menu';
+import { Guide } from 'components/features/Guide/Guide';
+import { Board } from 'components/features/Board/Board';
+import { PlayerProfile } from 'components/features/Player/PlayerProfile';
+import { PlayerModal } from 'components/features/Player/PlayerModal';
+import { ThemeModal } from 'components/features/Theme/ThemeModal';
 
 import { INITIAL_BOARD_STATE, THEME_COLORS, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from 'constants';
 

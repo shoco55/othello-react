@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { BoardStone } from 'components/BoardStone';
+import { BoardStone } from 'components/features/Board/BoardStone';
 
 import { Player } from 'types/player';
 
