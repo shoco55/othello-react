@@ -1,8 +1,10 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
+import { Modal } from './Modal';
+import { ModalHeader } from './ModalHeader';
+import { ModalContent } from './ModalContent';
+import { ModalFooter } from './ModalFooter';
 import { Button } from './Button';
 import { ThemeSample } from './ThemeSample';
 
@@ -41,97 +43,45 @@ export const ThemeModal: VFC<Props> = (props) => {
   };
 
   return (
-    <div>
-      {isThemeModalOpen && (
-        <div css={overlay} onClick={closeThemeModal}>
-          <div css={modal} onClick={(e) => e.stopPropagation()}>
-            <div css={header}>
-              <p css={title}>テーマを変更する</p>
-            </div>
+    <Modal
+      isOpen={isThemeModalOpen}
+      aria-labelledby="modalTitle"
+      aria-describedby="modalDisc"
+      onClose={closeThemeModal}
+      width="90%">
+      <>
+        <ModalHeader htmlId="modalTitle" title="テーマを変更する" />
 
-            <section css={content}>
-              <div css={themes}>
-                {THEME_COLORS.map((theme) => {
-                  return (
-                    <ThemeSample theme={theme} selectedThemeRadio={selectedThemeRadio} onChangeTheme={onChangeTheme} />
-                  );
-                })}
-              </div>
-            </section>
-
-            <div css={footer}>
-              <Button type="normal" onClick={closeThemeModal}>
-                キャンセル
-              </Button>
-              <Button type="primary" onClick={onClickUpdate}>
-                変更する
-              </Button>
-            </div>
+        <ModalContent htmlId="modalDisc">
+          <div css={themes}>
+            {THEME_COLORS.map((theme) => {
+              return (
+                <ThemeSample
+                  key={theme.id}
+                  theme={theme}
+                  selectedThemeRadio={selectedThemeRadio}
+                  onChangeTheme={onChangeTheme}
+                />
+              );
+            })}
           </div>
-        </div>
-      )}
-    </div>
+        </ModalContent>
+
+        <ModalFooter>
+          <Button type="normal" onClick={closeThemeModal}>
+            キャンセル
+          </Button>
+          <Button type="primary" onClick={onClickUpdate}>
+            変更する
+          </Button>
+        </ModalFooter>
+      </>
+    </Modal>
   );
 };
-
-const overlay = css`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
-
-const modal = css`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 90%;
-  max-width: 900px;
-  max-height: calc(100vh - 40px);
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-const header = css`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 16px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #dbdbdb;
-`;
-
-const title = css`
-  font-size: 20px;
-`;
-
-const content = css`
-  padding: 16px 20px;
-  background-color: #fff;
-  overflow-y: auto;
-`;
 
 const themes = css`
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-`;
-
-const footer = css`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  padding: 16px 20px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #dbdbdb;
-
-  button + button {
-    margin-left: 8px;
-  }
 `;

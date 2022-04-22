@@ -53,6 +53,7 @@ const themeBox = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 6px;
   cursor: pointer;
@@ -129,17 +130,17 @@ const themeNameInner = css`
 const radioSubstance = css`
   position: absolute;
   opacity: 0;
+  top: 0;
   left: 0;
   width: 14px;
   height: 14px;
   margin: 0;
   appearance: none;
   z-index: 2;
-  &:focus {
-    opacity: 1;
-  }
+
   &:checked + span {
     border-color: #223a70;
+
     &::after {
       opacity: 1;
     }

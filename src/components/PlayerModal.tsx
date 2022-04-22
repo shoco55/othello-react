@@ -1,8 +1,10 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
+import { Modal } from './Modal';
+import { ModalHeader } from './ModalHeader';
+import { ModalContent } from './ModalContent';
+import { ModalFooter } from './ModalFooter';
 import { Button } from './Button';
 
 import { Player } from '../types/player';
@@ -49,102 +51,60 @@ export const PlayerModal: VFC<Props> = (props) => {
   };
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      {isPlayerModalOpen && (
-        <div css={overlay} onClick={closePlayerModal}>
-          <div css={modal} onClick={(e) => e.stopPropagation()}>
-            <div css={header}>
-              <p css={title}>プレイヤー名を変更する</p>
-            </div>
-            <div css={content}>
-              <div css={formParts}>
-                <label htmlFor="playerFirst" css={label}>
-                  先手プレイヤー
-                </label>
-                <input
-                  id="playerFirst"
-                  type="text"
-                  css={input}
-                  maxLength={10}
-                  autoComplete="off"
-                  value={playerFirstName}
-                  onChange={onChangePlayerFirstName}
-                />
-                <p css={counter}>{playerFirstName.length}/10</p>
-              </div>
-              <div css={formParts}>
-                <label htmlFor="playerSecond" css={label}>
-                  後手プレイヤー
-                </label>
-                <input
-                  id="playerSecond"
-                  type="text"
-                  css={input}
-                  maxLength={10}
-                  autoComplete="off"
-                  value={playerSecondName}
-                  onChange={onChangePlayerSecondName}
-                />
-                <p css={counter}>{playerSecondName.length}/10</p>
-              </div>
-              <p css={note}>※プレイヤー名は、ブラウザに一時的に保存します。ブラウザを閉じるとリセットされます。</p>
-            </div>
-            <div css={footer}>
-              <Button type="normal" onClick={closePlayerModal}>
-                キャンセル
-              </Button>
-              <Button type="primary" onClick={onClickUpdate}>
-                変更する
-              </Button>
-            </div>
+    <Modal
+      isOpen={isPlayerModalOpen}
+      aria-labelledby="modalTitle"
+      aria-describedby="modalDisc"
+      onClose={closePlayerModal}>
+      <>
+        <ModalHeader htmlId="modalTitle" title="プレイヤー名を変更する" />
+
+        <ModalContent htmlId="modalDisc">
+          <div css={formParts}>
+            <label htmlFor="playerFirst" css={label}>
+              先手プレイヤー
+            </label>
+            <input
+              id="playerFirst"
+              type="text"
+              css={input}
+              maxLength={10}
+              autoComplete="off"
+              value={playerFirstName}
+              onChange={onChangePlayerFirstName}
+            />
+            <p css={counter}>{playerFirstName.length}/10</p>
           </div>
-        </div>
-      )}
-    </>
+          <div css={formParts}>
+            <label htmlFor="playerSecond" css={label}>
+              後手プレイヤー
+            </label>
+            <input
+              id="playerSecond"
+              type="text"
+              css={input}
+              maxLength={10}
+              autoComplete="off"
+              value={playerSecondName}
+              onChange={onChangePlayerSecondName}
+            />
+            <p css={counter}>{playerSecondName.length}/10</p>
+          </div>
+          <p css={note}>※プレイヤー名は、ブラウザに一時的に保存します。ブラウザを閉じるとリセットされます。</p>
+        </ModalContent>
+
+        <ModalFooter>
+          <Button type="normal" onClick={closePlayerModal}>
+            キャンセル
+          </Button>
+          <Button type="primary" onClick={onClickUpdate}>
+            変更する
+          </Button>
+        </ModalFooter>
+      </>
+    </Modal>
   );
 };
-
-const overlay = css`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
-
-const modal = css`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 400px;
-  max-height: calc(100vh - 40px);
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-const header = css`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 16px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #dbdbdb;
-`;
-
-const content = css`
-  padding: 24px 20px;
-  background-color: #fff;
-  overflow-y: auto;
-`;
-
-const title = css`
-  font-size: 20px;
-`;
 
 const formParts = css`
   margin-bottom: 16px;
@@ -180,18 +140,4 @@ const note = css`
   font-size: 14px;
   letter-spacing: 0.03em;
   text-indent: -1em;
-`;
-
-const footer = css`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  padding: 16px 20px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #dbdbdb;
-
-  button + button {
-    margin-left: 8px;
-  }
 `;
