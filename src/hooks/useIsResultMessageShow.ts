@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const useIsResultMessageShow = () => {
+import { GameState } from 'types/game';
+
+export const useIsResultMessageShow = (isGameOver: GameState['isGameOver']) => {
   const [isResultMessageShow, setIsShowResultMessage] = useState(false);
 
   const showResultMessage = () => {
@@ -10,6 +12,14 @@ export const useIsResultMessageShow = () => {
   const hideResultMessage = () => {
     setIsShowResultMessage(false);
   };
+
+  useEffect(() => {
+    if (isGameOver) {
+      showResultMessage();
+    } else {
+      hideResultMessage();
+    }
+  }, [isGameOver]);
 
   return { isResultMessageShow, showResultMessage, hideResultMessage };
 };

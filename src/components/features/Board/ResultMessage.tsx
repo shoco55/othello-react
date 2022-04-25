@@ -2,41 +2,39 @@ import { VFC, useState, useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
 import { CSSTransition } from 'react-transition-group';
 
-import { Player } from 'types/player';
-import { Result } from 'types/result';
+import { Players } from 'types/player';
+import { GameResult } from 'types/game';
 
 import { RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW } from '../../../constants';
 
 interface Props {
-  playerFirst: Player;
-  playerSecond: Player;
-  gameResult: Result;
+  players: Players;
+  gameResult: GameResult;
   isResultMessageShow: boolean;
   hideResultMessage: () => void;
 }
 
 export const ResultMessage: VFC<Props> = (props) => {
-  const { playerFirst, playerSecond, gameResult, isResultMessageShow, hideResultMessage } = props;
+  const { players, gameResult, isResultMessageShow, hideResultMessage } = props;
 
   const nodeRef = useRef(null);
 
   const [resultMessage, setResultMessage] = useState('');
 
   useEffect(() => {
-    // eslint-disable-next-line default-case
     switch (gameResult.status) {
       case RESULT_FIRST_WIN:
-        setResultMessage(playerFirst.name);
+        setResultMessage(players.first.name);
         break;
       case RESULT_SECOND_WIN:
-        setResultMessage(playerSecond.name);
+        setResultMessage(players.second.name);
         break;
       case RESULT_DRAW:
         setResultMessage('引き分け');
         break;
+      // no default
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameResult]);
+  }, [gameResult, players.first.name, players.second.name]);
 
   return (
     <CSSTransition
@@ -61,15 +59,15 @@ export const ResultMessage: VFC<Props> = (props) => {
           </p>
         )}
         <p css={result}>{resultMessage}</p>
-        <div css={players}>
+        <div css={playersBlock}>
           <p css={player}>
-            <span css={stone} style={{ backgroundColor: playerFirst.color }} />
+            <span css={stone} style={{ backgroundColor: players.first.color }} />
             <span css={number}>{gameResult.firstStoneNumber}</span>
           </p>
           <p css={vs}>VS</p>
           <p css={player}>
             <span css={number}>{gameResult.secondStoneNumber}</span>
-            <span css={stone} style={{ backgroundColor: playerSecond.color }} />
+            <span css={stone} style={{ backgroundColor: players.second.color }} />
           </p>
         </div>
       </div>
@@ -173,7 +171,7 @@ const result = css`
   text-align: center;
 `;
 
-const players = css`
+const playersBlock = css`
   display: flex;
   justify-content: center;
   align-items: center;

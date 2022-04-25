@@ -6,20 +6,19 @@ import { BoardMessage } from 'components/features/Board/BoardMessage';
 import { ResultMessage } from 'components/features/Board/ResultMessage';
 
 import { Theme } from 'types/theme';
-import { Player } from 'types/player';
-import { Result } from 'types/result';
+import { Players, Player } from 'types/player';
+import { GameResult } from 'types/game';
 import { BoardState, BoardMessageTypeList } from 'types/board';
 
 interface Props {
   selectedTheme: Theme;
-  playerFirst: Player;
-  playerSecond: Player;
+  players: Players;
   currentPlayer: Player;
   boardState: BoardState;
-  onClickSquare: (x: number, y: number) => void;
+  updateBoardState: (x: number, y: number) => void;
   isBoardMessageShow: boolean;
   boardMessageType: BoardMessageTypeList;
-  gameResult: Result;
+  gameResult: GameResult;
   isResultMessageShow: boolean;
   hideResultMessage: () => void;
 }
@@ -27,11 +26,10 @@ interface Props {
 export const Board: VFC<Props> = (props) => {
   const {
     selectedTheme,
-    playerFirst,
-    playerSecond,
+    players,
     currentPlayer,
     boardState,
-    onClickSquare,
+    updateBoardState,
     isBoardMessageShow,
     boardMessageType,
     gameResult,
@@ -52,24 +50,24 @@ export const Board: VFC<Props> = (props) => {
                   squareState={square}
                   x={index}
                   y={rowIndex}
-                  onClickSquare={onClickSquare}
+                  updateBoardState={updateBoardState}
                   borderColor={selectedTheme.border}
-                  playerFirst={playerFirst}
-                  playerSecond={playerSecond}
+                  players={players}
                 />
               );
             });
           })}
         </div>
       </div>
+
       <BoardMessage
         currentPlayer={currentPlayer}
         isBoardMessageShow={isBoardMessageShow}
         boardMessageType={boardMessageType}
       />
+
       <ResultMessage
-        playerFirst={playerFirst}
-        playerSecond={playerSecond}
+        players={players}
         gameResult={gameResult}
         isResultMessageShow={isResultMessageShow}
         hideResultMessage={hideResultMessage}

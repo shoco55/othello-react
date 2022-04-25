@@ -1,29 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { Player } from 'types/player';
+import { Players } from 'types/player';
 
-export const useCurrentPlayer = (playerFirst: Player, playerSecond: Player) => {
-  const [currentPlayer, setCurrentPlayer] = useState(playerFirst);
+export const useCurrentPlayers = (players: Players) => {
+  const [currentPlayer, setCurrentPlayer] = useState(players.first);
 
   const updateCurrentPlayer = () => {
-    switch (currentPlayer.stone) {
-      case playerFirst.stone:
-        setCurrentPlayer((state) => ({ ...state, name: playerFirst.name, color: playerFirst.color }));
-        break;
-      case playerSecond.stone:
-        setCurrentPlayer((state) => ({ ...state, name: playerSecond.name, color: playerSecond.color }));
-        break;
-      // no default
+    if (players.first.isMyTurn) {
+      setCurrentPlayer(players.first);
+    } else {
+      setCurrentPlayer(players.second);
     }
   };
 
-  const changePlayerTurn = () => {
-    setCurrentPlayer((prevPlayer) => (prevPlayer.stone === playerFirst.stone ? playerSecond : playerFirst));
-  };
+  useEffect(() => {
+    updateCurrentPlayer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [players]);
 
-  const resetPlayerTurn = () => {
-    setCurrentPlayer(playerFirst);
+  return {
+    currentPlayer,
   };
-
-  return { currentPlayer, updateCurrentPlayer, changePlayerTurn, resetPlayerTurn };
 };

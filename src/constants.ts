@@ -1,4 +1,5 @@
 import { Theme } from './types/theme';
+import { BoardState } from './types/board';
 
 export const BOARD_SIZE = 8;
 
@@ -10,7 +11,7 @@ const F = STONE_FIRST;
 const S = STONE_SECOND;
 const E = STONE_EMPTY;
 
-export const INITIAL_BOARD_STATE = [
+export const INITIAL_BOARD_STATE: BoardState = [
   [E, E, E, E, E, E, E, E],
   [E, E, E, E, E, E, E, E],
   [E, E, E, E, E, E, E, E],

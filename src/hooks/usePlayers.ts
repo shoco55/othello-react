@@ -1,40 +1,99 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+import { Players } from 'types/player';
 import { Theme } from 'types/theme';
 
 import { STONE_FIRST, STONE_SECOND, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from 'constants';
 
 export const usePlayers = (selectedTheme: Theme) => {
-  const [playerFirst, setPlayerFirst] = useState({
-    name: PLAYER_FIRST_DEFAULT_NAME,
-    color: selectedTheme.first,
-    stone: STONE_FIRST,
-  });
-
-  const [playerSecond, setPlayerSecond] = useState({
-    name: PLAYER_SECOND_DEFAULT_NAME,
-    color: selectedTheme.second,
-    stone: STONE_SECOND,
-  });
-
-  const updateSessionPlayerSetting = (key: 'name' | 'color', first: string, second: string) => {
-    if (key === 'name') {
-      sessionStorage.setItem('playerFirstName', first);
-      sessionStorage.setItem('playerSecondName', second);
-    }
+  const initialPlayersState: Players = {
+    first: {
+      name: PLAYER_FIRST_DEFAULT_NAME,
+      stone: STONE_FIRST,
+      color: selectedTheme.first,
+      isMyTurn: true,
+    },
+    second: {
+      name: PLAYER_SECOND_DEFAULT_NAME,
+      stone: STONE_SECOND,
+      color: selectedTheme.second,
+      isMyTurn: false,
+    },
   };
 
-  const updatePlayerSetting = (key: 'name' | 'color', first: string, second: string) => {
-    setPlayerFirst((state) => ({ ...state, [key]: first }));
-    setPlayerSecond((state) => ({ ...state, [key]: second }));
+  const [players, setPlayers] = useState(initialPlayersState);
+
+  useEffect(() => {
+    const sessionPlayerFirstName = sessionStorage.getItem('playerFirstName');
+    const playerFirstName = sessionPlayerFirstName != null ? sessionPlayerFirstName : PLAYER_FIRST_DEFAULT_NAME;
+    const sessionPlayerSecondName = sessionStorage.getItem('playerSecondName');
+    const playerSecondName = sessionPlayerSecondName != null ? sessionPlayerSecondName : PLAYER_SECOND_DEFAULT_NAME;
+    updatePlayers(playerFirstName, playerSecondName);
+  }, []);
+
+  const updatePlayers = (first: string, second: string) => {
+    setPlayers((prevState) => ({
+      first: { ...prevState.first, name: first },
+      second: { ...prevState.second, name: second },
+    }));
+  };
+
+  const updateSessionPlayers = (first: string, second: string) => {
+    sessionStorage.setItem('playerFirstName', first);
+    sessionStorage.setItem('playerSecondName', second);
+  };
+
+  const initializePlayerTurn = () => {
+    setPlayers((prevState) => {
+      return {
+        first: {
+          ...prevState.first,
+          isMyTurn: true,
+        },
+        second: {
+          ...prevState.second,
+          isMyTurn: false,
+        },
+      };
+    });
+  };
+
+  useEffect(() => {
+    setPlayers((prevState) => {
+      return {
+        first: {
+          ...prevState.first,
+          color: selectedTheme.first,
+        },
+        second: {
+          ...prevState.second,
+          color: selectedTheme.second,
+        },
+      };
+    });
+  }, [selectedTheme]);
+
+  const changePlayerTurn = () => {
+    setPlayers((prevState) => {
+      return {
+        first: {
+          ...prevState.first,
+          isMyTurn: !prevState.first.isMyTurn,
+        },
+        second: {
+          ...prevState.second,
+          isMyTurn: !prevState.second.isMyTurn,
+        },
+      };
+    });
   };
 
   return {
-    playerFirst,
-    setPlayerFirst,
-    playerSecond,
-    setPlayerSecond,
-    updateSessionPlayerSetting,
-    updatePlayerSetting,
+    players,
+    setPlayers,
+    updatePlayers,
+    updateSessionPlayers,
+    initializePlayerTurn,
+    changePlayerTurn,
   };
 };

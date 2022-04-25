@@ -69,6 +69,7 @@ const themeBox = css`
 
 const checkedThemeBox = css`
   ${themeBox}
+
   border-color: #223a70;
 `;
 
@@ -116,6 +117,7 @@ const themeName = css`
 
 const checkedThemeName = css`
   ${themeName}
+
   background-color: rgba(34, 58, 112, 0.1);
 `;
 
@@ -160,6 +162,7 @@ const radioImitation = css`
   border-radius: 50%;
   background-color: #fff;
   transition: all 200ms ease-out;
+
   &::after {
     content: '';
     display: block;

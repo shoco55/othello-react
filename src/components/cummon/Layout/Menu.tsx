@@ -4,17 +4,17 @@ import { css } from '@emotion/react';
 import { Button } from 'components/cummon/Button/Button';
 
 interface Props {
-  resetGame: () => void;
+  initializeGame: () => void;
   openPlayerModal: () => void;
   openThemeModal: () => void;
 }
 
 export const Menu: VFC<Props> = (props) => {
-  const { resetGame, openPlayerModal, openThemeModal } = props;
+  const { initializeGame, openPlayerModal, openThemeModal } = props;
 
   return (
     <div css={menu}>
-      <Button type="normal" iconName="history" onClick={resetGame}>
+      <Button type="normal" iconName="history" onClick={initializeGame}>
         リセット
       </Button>
       <div css={settingButtons}>

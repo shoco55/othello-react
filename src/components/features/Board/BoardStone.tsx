@@ -1,24 +1,24 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { Player } from 'types/player';
+import { BoardStoneType } from 'types/board';
+import { Players } from 'types/player';
 
 import { STONE_FIRST } from 'constants';
 
 interface Props {
-  squareState: number;
-  playerFirst: Player;
-  playerSecond: Player;
+  squareState: BoardStoneType;
+  players: Players;
 }
 
 export const BoardStone: VFC<Props> = (props) => {
-  const { squareState, playerFirst, playerSecond } = props;
+  const { squareState, players } = props;
 
   return (
     <span
       css={stone}
       style={{
-        backgroundColor: squareState === STONE_FIRST ? playerFirst.color : playerSecond.color,
+        backgroundColor: squareState === STONE_FIRST ? players.first.color : players.second.color,
       }}
     />
   );

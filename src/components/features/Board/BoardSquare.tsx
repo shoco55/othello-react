@@ -3,28 +3,26 @@ import { css } from '@emotion/react';
 
 import { BoardStone } from 'components/features/Board/BoardStone';
 
-import { Player } from 'types/player';
+import { BoardStoneType } from 'types/board';
+import { Players } from 'types/player';
 
 import { STONE_EMPTY } from 'constants';
 
 interface Props {
-  squareState: number;
+  squareState: BoardStoneType;
   x: number;
   y: number;
-  onClickSquare: (x: number, y: number) => void;
+  updateBoardState: (x: number, y: number) => void;
   borderColor: string;
-  playerFirst: Player;
-  playerSecond: Player;
+  players: Players;
 }
 
 export const BoardSquare: VFC<Props> = (props) => {
-  const { squareState, x, y, onClickSquare, borderColor, playerFirst, playerSecond } = props;
+  const { squareState, x, y, updateBoardState, borderColor, players } = props;
 
   return (
-    <button type="button" css={square} style={{ borderColor }} onClick={() => onClickSquare(x, y)}>
-      {squareState !== STONE_EMPTY && (
-        <BoardStone squareState={squareState} playerFirst={playerFirst} playerSecond={playerSecond} />
-      )}
+    <button type="button" css={square} style={{ borderColor }} onClick={() => updateBoardState(x, y)}>
+      {squareState !== STONE_EMPTY && <BoardStone squareState={squareState} players={players} />}
     </button>
   );
 };
