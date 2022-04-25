@@ -1,29 +1,10 @@
 import { Theme } from './types/theme';
-import { BoardState } from './types/board';
 
 export const BOARD_SIZE = 8;
 
 export const STONE_FIRST = 1;
 export const STONE_SECOND = 2;
 export const STONE_EMPTY = 0;
-
-const F = STONE_FIRST;
-const S = STONE_SECOND;
-const E = STONE_EMPTY;
-
-export const INITIAL_BOARD_STATE: BoardState = [
-  [E, E, E, E, E, E, E, E],
-  [E, E, E, E, E, E, E, E],
-  [E, E, E, E, E, E, E, E],
-  [E, E, E, S, F, E, E, E],
-  [E, E, E, F, S, E, E, E],
-  [E, E, E, E, E, E, E, E],
-  [E, E, E, E, E, E, E, E],
-  [E, E, E, E, E, E, E, E],
-];
-
-export const PLAYER_FIRST_DEFAULT_NAME = 'プレイヤーA';
-export const PLAYER_SECOND_DEFAULT_NAME = 'プレイヤーB';
 
 export const RESULT_FIRST_WIN = 'resultFirstWin';
 export const RESULT_SECOND_WIN = 'resultSecondWin';

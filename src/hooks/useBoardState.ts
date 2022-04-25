@@ -3,9 +3,24 @@ import { useState } from 'react';
 import { Player } from 'types/player';
 import { BoardState } from 'types/board';
 
-import { BOARD_SIZE, STONE_EMPTY, INITIAL_BOARD_STATE } from 'constants';
+import { BOARD_SIZE, STONE_FIRST, STONE_SECOND, STONE_EMPTY } from 'constants';
 
 export const useBoardState = (currentPlayer: Player) => {
+  const F = STONE_FIRST;
+  const S = STONE_SECOND;
+  const E = STONE_EMPTY;
+
+  const INITIAL_BOARD_STATE: BoardState = [
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, S, F, E, E, E],
+    [E, E, E, F, S, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+  ];
+
   const [boardState, setBoardState] = useState<BoardState>(INITIAL_BOARD_STATE);
 
   const isInitialBoardState = (board: BoardState) => {

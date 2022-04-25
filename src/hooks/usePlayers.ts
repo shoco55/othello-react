@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react';
 import { Players } from 'types/player';
 import { Theme } from 'types/theme';
 
-import { STONE_FIRST, STONE_SECOND, PLAYER_FIRST_DEFAULT_NAME, PLAYER_SECOND_DEFAULT_NAME } from 'constants';
+import { STONE_FIRST, STONE_SECOND } from 'constants';
 
 export const usePlayers = (selectedTheme: Theme) => {
+  const PLAYER_FIRST_DEFAULT_NAME = 'プレイヤーA';
+  const PLAYER_SECOND_DEFAULT_NAME = 'プレイヤーB';
+
   const initialPlayersState: Players = {
     first: {
       name: PLAYER_FIRST_DEFAULT_NAME,
