@@ -1,26 +1,50 @@
 import { useState } from 'react';
 
-import { BOARD_SIZE, STONE_EMPTY, INITIAL_BOARD_STATE } from 'constants';
-
 import { Player } from 'types/player';
 import { BoardState } from 'types/board';
 
+import { BOARD_SIZE, STONE_FIRST, STONE_SECOND, STONE_EMPTY } from 'constants';
+
 export const useBoardState = (currentPlayer: Player) => {
+  const F = STONE_FIRST;
+  const S = STONE_SECOND;
+  const E = STONE_EMPTY;
+
+  const INITIAL_BOARD_STATE: BoardState = [
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, S, F, E, E, E],
+    [E, E, E, F, S, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+    [E, E, E, E, E, E, E, E],
+  ];
+
   const [boardState, setBoardState] = useState<BoardState>(INITIAL_BOARD_STATE);
 
-  const updateBoardState = (newBoardState: BoardState) => {
-    setBoardState(newBoardState);
+  const isInitialBoardState = (board: BoardState) => {
+    return JSON.stringify(board) === JSON.stringify(INITIAL_BOARD_STATE);
   };
 
-  const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
-
-  const updateCurrentPosition = ({ x, y }: { x: number; y: number }) => {
-    setCurrentPosition({ x, y });
+  const initializeBoardState = () => {
+    setBoardState(INITIAL_BOARD_STATE);
   };
 
-  const nextBoardState = () => {
-    const { x, y } = currentPosition;
+  const hasBoardStateChange = (nextBoard: BoardState) => {
+    return JSON.stringify(nextBoard) !== JSON.stringify(boardState);
+  };
 
+  const updateBoardState = (x: number, y: number) => {
+    const nextBoard = nextBoardState(x, y);
+
+    if (!hasBoardStateChange(nextBoard)) return;
+
+    nextBoard[y][x] = currentPlayer.stone;
+    setBoardState(nextBoard);
+  };
+
+  const nextBoardState = (x: number, y: number) => {
     if (boardState[y][x] !== STONE_EMPTY) return boardState;
 
     const STONE_CURRENT_PLAYER = currentPlayer.stone;
@@ -133,5 +157,10 @@ export const useBoardState = (currentPlayer: Player) => {
     return nextBoard;
   };
 
-  return { boardState, updateBoardState, currentPosition, updateCurrentPosition, nextBoardState };
+  return {
+    boardState,
+    isInitialBoardState,
+    initializeBoardState,
+    updateBoardState,
+  };
 };

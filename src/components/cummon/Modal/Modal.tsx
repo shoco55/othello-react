@@ -1,26 +1,28 @@
-import { VFC, useRef } from 'react';
+import { ReactNode, VFC, useRef } from 'react';
 import { css } from '@emotion/react';
 
 import { useAriaHidden } from 'hooks/useAriaHidden';
 import { useFocusTrap } from 'hooks/useFocusTrap';
 
-type Props = {
-  children: React.ReactNode;
+interface Props {
+  children: ReactNode;
   isOpen: boolean;
   'aria-labelledby': string;
   'aria-describedby': string;
   onClose: () => void;
   width?: string;
-};
+}
 
-export const Modal: VFC<Props> = ({
-  children,
-  isOpen,
-  'aria-labelledby': ariaLabelledby,
-  'aria-describedby': ariaDescribedby,
-  onClose,
-  width = '400px',
-}) => {
+export const Modal: VFC<Props> = (props) => {
+  const {
+    children,
+    isOpen,
+    'aria-labelledby': ariaLabelledby,
+    'aria-describedby': ariaDescribedby,
+    onClose,
+    width = '400px',
+  } = props;
+
   const ref = useRef<HTMLDivElement>(null);
   useAriaHidden(ref, isOpen);
   useFocusTrap({ ref, isOpen, onClose });

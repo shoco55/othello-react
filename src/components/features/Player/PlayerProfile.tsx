@@ -1,32 +1,31 @@
 import { VFC } from 'react';
 import { css } from '@emotion/react';
 
-import { Player } from 'types/player';
+import { Players } from 'types/player';
 
 interface Props {
-  playerFirst: Player;
-  playerSecond: Player;
+  players: Players;
 }
 
 export const PlayerProfile: VFC<Props> = (props) => {
-  const { playerFirst, playerSecond } = props;
+  const { players } = props;
 
   return (
-    <div css={players}>
+    <div css={playersProfile}>
       <p css={player}>
-        {playerFirst.name}
-        <span css={stone} style={{ backgroundColor: playerFirst.color }} />
+        {players.first.name}
+        <span css={stone} style={{ backgroundColor: players.first.color }} />
       </p>
       <p css={vs}>VS</p>
       <p css={player}>
-        <span css={stone} style={{ backgroundColor: playerSecond.color }} />
-        {playerSecond.name}
+        <span css={stone} style={{ backgroundColor: players.second.color }} />
+        {players.second.name}
       </p>
     </div>
   );
 };
 
-const players = css`
+const playersProfile = css`
   display: flex;
   justify-content: center;
   align-items: center;

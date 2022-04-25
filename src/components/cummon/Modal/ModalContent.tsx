@@ -1,8 +1,8 @@
-import { VFC } from 'react';
+import { ReactNode, VFC } from 'react';
 import { css } from '@emotion/react';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   htmlId: string;
 }
 

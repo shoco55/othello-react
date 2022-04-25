@@ -2,10 +2,11 @@ import { VFC } from 'react';
 import { css } from '@emotion/react';
 
 import { Player } from 'types/player';
+import { GameState } from 'types/game';
 
 interface Props {
   currentPlayer: Player;
-  isGameOver: boolean;
+  isGameOver: GameState['isGameOver'];
 }
 
 export const Guide: VFC<Props> = (props) => {

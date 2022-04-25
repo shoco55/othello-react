@@ -1,26 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { ResultStatus, Result } from 'types/result';
 import { BoardState } from 'types/board';
+import { ResultStatus, GameResult, GameState } from 'types/game';
 
-import { RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW, STONE_FIRST, STONE_SECOND } from '../constants';
+import { STONE_FIRST, STONE_SECOND, RESULT_FIRST_WIN, RESULT_SECOND_WIN, RESULT_DRAW } from '../constants';
 
-export const useGameResult = (boardState: BoardState) => {
-  const [gameResult, setGameResult] = useState<Result>({
+export const useGameResult = (boardState: BoardState, gameState: GameState) => {
+  const [gameResult, setGameResult] = useState<GameResult>({
     status: RESULT_DRAW,
     firstStoneNumber: 0,
     secondStoneNumber: 0,
   });
-
-  const updateGameResult = ({ status, firstStoneNumber, secondStoneNumber }: Result) => {
-    setGameResult({ status, firstStoneNumber, secondStoneNumber });
-  };
-
-  const [isGameOver, setIsGameOver] = useState(false);
-
-  const updateIsGameOver = (flag: boolean) => {
-    setIsGameOver(flag);
-  };
 
   const getStoneNumber = () => {
     let firstStoneNumber = 0;
@@ -41,7 +31,7 @@ export const useGameResult = (boardState: BoardState) => {
     };
   };
 
-  const endGame = () => {
+  const updateGameResult = () => {
     const { firstStoneNumber, secondStoneNumber } = getStoneNumber();
 
     let status: ResultStatus;
@@ -54,10 +44,17 @@ export const useGameResult = (boardState: BoardState) => {
       status = RESULT_DRAW;
     }
 
-    updateIsGameOver(true);
-
-    updateGameResult({ status, firstStoneNumber, secondStoneNumber });
+    setGameResult({ status, firstStoneNumber, secondStoneNumber });
   };
 
-  return { gameResult, isGameOver, updateIsGameOver, endGame };
+  useEffect(() => {
+    if (gameState.isGameOver) {
+      updateGameResult();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState.isGameOver]);
+
+  return {
+    gameResult,
+  };
 };

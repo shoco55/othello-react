@@ -1,40 +1,32 @@
 import { useState, useEffect, VFC, ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 
-import { Modal } from 'components/Modal';
-import { ModalHeader } from 'components/ModalHeader';
-import { ModalContent } from 'components/ModalContent';
-import { ModalFooter } from 'components/ModalFooter';
-import { Button } from 'components/Button';
+import { Modal } from 'components/cummon/Modal/Modal';
+import { ModalHeader } from 'components/cummon/Modal/ModalHeader';
+import { ModalContent } from 'components/cummon/Modal/ModalContent';
+import { ModalFooter } from 'components/cummon/Modal/ModalFooter';
+import { Button } from 'components/cummon/Button/Button';
 
-import { Player } from 'types/player';
+import { Players } from 'types/player';
 
 interface Props {
   isPlayerModalOpen: boolean;
   closePlayerModal: () => void;
-  playerFirst: Player;
-  playerSecond: Player;
-  updateSessionPlayerSetting: (key: 'name' | 'color', first: string, second: string) => void;
-  updatePlayerSetting: (key: 'name' | 'color', first: string, second: string) => void;
+  players: Players;
+  updatePlayers: (first: string, second: string) => void;
+  updateSessionPlayers: (first: string, second: string) => void;
 }
 
 export const PlayerModal: VFC<Props> = (props) => {
-  const {
-    isPlayerModalOpen,
-    closePlayerModal,
-    playerFirst,
-    playerSecond,
-    updateSessionPlayerSetting,
-    updatePlayerSetting,
-  } = props;
+  const { isPlayerModalOpen, closePlayerModal, players, updatePlayers, updateSessionPlayers } = props;
 
   const [playerFirstName, setPlayerFirstName] = useState('');
   const [playerSecondName, setPlayerSecondName] = useState('');
 
   useEffect(() => {
-    setPlayerFirstName(playerFirst.name ?? '');
-    setPlayerSecondName(playerSecond.name ?? '');
-  }, [playerFirst, playerSecond, isPlayerModalOpen]);
+    setPlayerFirstName(players.first.name ?? '');
+    setPlayerSecondName(players.second.name ?? '');
+  }, [players.first.name, players.second.name]);
 
   const onChangePlayerFirstName = (e: ChangeEvent<HTMLInputElement>) => {
     setPlayerFirstName(e.target.value);
@@ -45,8 +37,9 @@ export const PlayerModal: VFC<Props> = (props) => {
   };
 
   const onClickUpdate = () => {
-    updateSessionPlayerSetting('name', playerFirstName, playerSecondName);
-    updatePlayerSetting('name', playerFirstName, playerSecondName);
+    updatePlayers(playerFirstName, playerSecondName);
+    updateSessionPlayers(playerFirstName, playerSecondName);
+
     closePlayerModal();
   };
 
