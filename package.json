@@ -24,7 +24,7 @@
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.3"
   },
-  "homepage": "https://shoco55.github.io/react-othello",
+  "homepage": "https://shoco55.github.io/othello-react",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
