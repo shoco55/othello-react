@@ -5,7 +5,7 @@ export const Header: VFC = () => {
   return (
     <div css={header}>
       <h1 css={title}>
-        Othello <span css={by}>by shoco55</span>
+        Reversi <span css={by}>by shoco55</span>
       </h1>
     </div>
   );
