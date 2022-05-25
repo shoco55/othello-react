@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/othello-react/static/js/main.28a9ef76.js",
-    "index.html": "/othello-react/index.html",
-    "main.28a9ef76.js.map": "/othello-react/static/js/main.28a9ef76.js.map"
+    "main.js": "/reversi-react/static/js/main.55b34cf7.js",
+    "index.html": "/reversi-react/index.html",
+    "main.55b34cf7.js.map": "/reversi-react/static/js/main.55b34cf7.js.map"
   },
   "entrypoints": [
-    "static/js/main.28a9ef76.js"
+    "static/js/main.55b34cf7.js"
   ]
 }
