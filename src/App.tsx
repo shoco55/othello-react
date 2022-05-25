@@ -1,6 +1,6 @@
 import emotionReset from 'emotion-reset';
 import { Global, css } from '@emotion/react';
-import { Othello } from './pages/Othello';
+import { Reversi } from 'pages/Reversi';
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
           }
         `}
       />
-      <Othello />
+      <Reversi />
     </>
   );
 };

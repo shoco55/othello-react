@@ -21,7 +21,7 @@ import { useIsPlayerModalOpen } from 'hooks/useIsPlayerModalOpen';
 import { useIsBoardMessageShow } from 'hooks/useIsBoardMessageShow';
 import { useIsResultMessageShow } from 'hooks/useIsResultMessageShow';
 
-export const Othello: VFC = () => {
+export const Reversi: VFC = () => {
   const isFirstRender = useRef(false);
 
   useEffect(() => {
